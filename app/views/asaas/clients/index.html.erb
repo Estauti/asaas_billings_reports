@@ -1,0 +1,8 @@
+<h1>Clients List</h1>
+<ul>
+  <% @clients.each do |client| %>
+    <li>
+      <%= client.client_id %>
+    </li>
+  <% end %>
+</ul>
