@@ -16,6 +16,9 @@ class Asaas::ClientsController < ApplicationController
     response = AsaasAPI.get_client(params[:id])
     @client = JSON.parse(response.body)
 
+    response = AsaasAPI.get_client_payments(params[:id])
+    @payments = JSON.parse(response.body)["data"]
+
     respond_to do |format|
       format.html { render 'asaas/clients/show' }
     end

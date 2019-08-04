@@ -1,4 +1,10 @@
-<h1><%= @client["name"] %></h1>
+<h1 ><%= @client["company"] %></h1>
 <p>
   <%= @client %>
 </p>
+
+<ul>
+  <% @payments.each do |payment| %>
+    <li><%= payment %></li>
+  <% end %>
+</ul>

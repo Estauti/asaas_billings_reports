@@ -5,7 +5,11 @@ module AsaasAPI
   end
 
   def AsaasAPI.get_clients limit=100
-    AsaasAPI.get_request("customers?limit=#{limit}}")
+    AsaasAPI.get_request("customers?limit=#{limit}")
+  end
+
+  def AsaasAPI.get_client_payments client_id
+    AsaasAPI.get_request("payments?limit=100&customer=#{client_id}&dateCreated[ge]=2019-06-01&dateCreated[le]=2019-06-30")
   end
 
   def AsaasAPI.get_request(url)
