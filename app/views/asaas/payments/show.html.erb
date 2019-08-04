@@ -1,4 +1,6 @@
 <h1><%= @payment["description"] %></h1>
 <p><%= @payment %></p>
 
+<%= button_to "Imprimir PDF", target: "_blank", controller: "payments", action: "pdf", id: @payment["id"], client_name: params[:client_name] %>
+
 <%= link_to "Voltar", controller: "clients", action: "show", id: @payment["customer"] %>
