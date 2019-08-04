@@ -5,7 +5,7 @@
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  client_id  :integer          not null
+#  client_id  :text             not null
 #
 
 class Asaas::Client < ApplicationRecord

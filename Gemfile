@@ -36,6 +36,12 @@ gem 'jbuilder', '~> 2.5'
 # Code quality
 gem 'rubocop', '~> 0.74.0', require: false
 
+# Requests
+gem "typhoeus"
+
+# Environment Variables
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
