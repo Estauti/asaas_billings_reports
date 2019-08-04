@@ -2,7 +2,7 @@
 <ul>
   <% @clients.each do |client| %>
     <li>
-      <%= client["name"] %>
+      <%= link_to client["name"], controller: "clients", action: "show", id: client["id"] %>
     </li>
   <% end %>
 </ul>

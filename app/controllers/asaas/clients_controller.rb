@@ -13,8 +13,8 @@ class Asaas::ClientsController < ApplicationController
   end
 
   def show
-    client_id = Asaas::Client.find(params[:id]).client_id
-    @client = AsaasAPI.get_client(client_id)
+    response = AsaasAPI.get_client(params[:id])
+    @client = JSON.parse(response.body)
 
     respond_to do |format|
       format.html { render 'asaas/clients/show' }
