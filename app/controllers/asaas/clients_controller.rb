@@ -3,7 +3,8 @@ class Asaas::ClientsController < ApplicationController
  include AsaasAPI
 
   def index
-    @clients = Asaas::Client.all
+    response = AsaasAPI.get_clients()
+    @clients = JSON.parse(response.body)["data"]
 
     respond_to do |format|
       format.json { render json: @clients, status: :ok }

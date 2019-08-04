@@ -2,7 +2,7 @@
 <ul>
   <% @clients.each do |client| %>
     <li>
-      <%= client.client_id %>
+      <%= client["name"] %>
     </li>
   <% end %>
 </ul>
