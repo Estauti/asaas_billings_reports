@@ -12,6 +12,10 @@ module AsaasAPI
     AsaasAPI.get_request("payments?limit=100&customer=#{client_id}&dateCreated[ge]=2019-06-01&dateCreated[le]=2019-06-30")
   end
 
+  def AsaasAPI.get_payment payment_id
+    AsaasAPI.get_request("payments/#{payment_id}")
+  end
+
   def AsaasAPI.get_request(url)
     Typhoeus.get("https://www.asaas.com/api/v3/#{url}", headers: { access_token: ENV["ASAAS_API_KEY"] })
   end

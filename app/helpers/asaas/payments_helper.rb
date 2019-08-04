@@ -1,0 +1,2 @@
+module Asaas::PaymentsHelper
+end

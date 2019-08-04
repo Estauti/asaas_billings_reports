@@ -5,6 +5,8 @@
 
 <ul>
   <% @payments.each do |payment| %>
-    <li><%= payment %></li>
+    <li><%= link_to payment["description"], controller: "payments", action: "show", id: payment["id"] %></li>
   <% end %>
 </ul>
+
+<%= link_to "Voltar", controller: "clients", action: "index" %>

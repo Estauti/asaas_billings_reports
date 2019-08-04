@@ -1,0 +1,4 @@
+<h1><%= @payment["description"] %></h1>
+<p><%= @payment %></p>
+
+<%= link_to "Voltar", controller: "clients", action: "show", id: @payment["customer"] %>
