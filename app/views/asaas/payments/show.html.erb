@@ -1,6 +1,137 @@
-<h1><%= @payment["description"] %></h1>
-<p><%= @payment %></p>
-
-<%= button_to "Imprimir PDF", target: "_blank", controller: "payments", action: "pdf", id: @payment["id"], client_name: params[:client_name] %>
-
+<%= button_to "Imprimir PDF", target: "_blank", controller: "payments", action: "pdf", id: @payment["id"] %>
 <%= link_to "Voltar", controller: "clients", action: "show", id: @payment["customer"] %>
+
+<div class="row" style="margin-bottom: 15px">
+  <div class="logo-col">
+    <%= image_tag 'abras_logo.png', height: "150", width: "350" %>
+  </div>
+  <div class="abras-col">
+    <div class="report-title"><strong>ABRAS - Associação Brasileira de Supermercados</strong></div>
+    <div>62.360.268/0001-91</div>
+    <div>pbr@volltrix.com.br</div>
+    <div>(11) 3838-4557</div>
+    <div>AV DIOGENES RIBEIRO LIMA, 2872, 9 ANDAR, ALTO DA LAPA</div>
+    <div>CEP: 05083010</div>
+    <div>São Paulo - SP</div>
+    <div>www.abras.com.br</div>
+  </div>
+</div>
+
+<div class="block-border">
+  <div class="row">
+    <div class="block-title">
+      Dados da Fatura - <%= @payment["invoiceNumber"] %>
+    </div>
+    <div class="col-6">
+      <div class="section-title">
+        Valor
+      </div>
+      <div class="section-body lg-text">
+        <%= @payment["value"] %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="section-title">
+        Data de Vencimento
+      </div>
+      <div class="section-body lg-text">
+        <%= @payment["dueDate"] %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="section-title">
+        Descrição
+      </div>
+      <div class="section-body">
+        <%= @payment["description"] %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="block-border">
+  <div class="row">
+    <div class="block-title">
+      Dados do Pagador
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="section-title">
+          Nome
+        </div>
+        <div class="section-body">
+          <%= @client["company"] %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="section-title">
+          CNPJ
+        </div>
+        <div class="section-body">
+          <%= @client["cpfCnpj"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="section-title">
+        Endereço
+      </div>
+      <div class="section-body">
+        <span>Rua: <%= @client["address"] %>, <%= @client["addressNumber"] %>, <%= @city %> - <%= @client["state"] || "N/A" %>, CEP: <%= @client["postalCode"] || "N/A" %></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+.logo-col {
+  float: left;
+  width: 45%;
+  padding: 0px 20px 0px 20px;
+}
+.abras-col {
+  float: left;
+  width: 55%;
+  padding: 0px 10px 0px 10px;
+}
+.col-6 {
+  float: left;
+  width: 50%;
+  padding: 0px 10px 0px 10px;
+}
+.col {
+  padding: 0px 10px 0px 10px;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.section-title {
+  border: 1px solid black;
+  padding: 5px;
+}
+.section-body {
+  padding: 5px;
+}
+.block-border {
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+.block-title {
+  font-size: 20px;
+  margin: 10px 10px 0px 15px;
+}
+.lg-text {
+  font-size: 30px
+}
+.report-title {
+  font-size: 25px;
+}
+</style>

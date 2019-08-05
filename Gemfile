@@ -46,6 +46,12 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+# Currency format
+gem 'money'
+
+# CNPJ/CPF
+gem 'cpf_cnpj', '~> 0.1.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

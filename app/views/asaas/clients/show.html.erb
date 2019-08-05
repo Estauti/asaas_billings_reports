@@ -5,7 +5,10 @@
 
 <ul>
   <% @payments.each do |payment| %>
-    <li><%= link_to payment["description"], controller: "payments", action: "show", id: payment["id"], client_name: @client["name"] %></li>
+    <li>
+      <%= link_to payment["description"], controller: "payments", action: "show", id: payment["id"]%>
+      <%= button_to "Imprimir PDF", target: "_blank", controller: "payments", action: "pdf", id: payment["id"] %>
+    </li>
   <% end %>
 </ul>
 
