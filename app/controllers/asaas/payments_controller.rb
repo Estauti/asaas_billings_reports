@@ -5,10 +5,14 @@ class Asaas::PaymentsController < ApplicationController
     response = AsaasAPI.get_payment(params[:id])
     @payment = JSON.parse(response.body)
 
-    value = '%.2f' % @payment["value"]
+    value = @payment["originalValue"].nil? ? @payment["value"] : @payment["originalValue"]
+    value = '%.2f' % value
     value = value.gsub(".", "")
     value = Money.new(value, "BRL").format
-    @payment["value"] = value.gsub(".", ",")
+    @payment["reportValue"] = value.gsub(".", ",")
+
+    dateCreated = Date.strptime(@payment["dateCreated"], '%Y-%m-%d')
+    @payment["dateCreated"] = dateCreated.strftime("%d/%m/%Y")
 
     dueDate = Date.strptime(@payment["dueDate"], '%Y-%m-%d')
     @payment["dueDate"] = dueDate.strftime("%d/%m/%Y")
@@ -31,10 +35,14 @@ class Asaas::PaymentsController < ApplicationController
     response = AsaasAPI.get_payment(params[:id])
     @payment = JSON.parse(response.body)
 
-    value = '%.2f' % @payment["value"]
+    value = @payment["originalValue"].nil? ? @payment["value"] : @payment["originalValue"]
+    value = '%.2f' % value
     value = value.gsub(".", "")
     value = Money.new(value, "BRL").format
-    @payment["value"] = value.gsub(".", ",")
+    @payment["reportValue"] = value.gsub(".", ",")
+
+    dateCreated = Date.strptime(@payment["dateCreated"], '%Y-%m-%d')
+    @payment["dateCreated"] = dateCreated.strftime("%d/%m/%Y")
 
     dueDate = Date.strptime(@payment["dueDate"], '%Y-%m-%d')
     @payment["dueDate"] = dueDate.strftime("%d/%m/%Y")
@@ -51,7 +59,6 @@ class Asaas::PaymentsController < ApplicationController
     render({
       pdf: @client["name"], 
       template: 'asaas/payments/pdf', 
-      save_to_file: Rails.root.join('pdfs', "#{params[:client_name]}.pdf"),
       disposition: 'attachment'
     })
   end
