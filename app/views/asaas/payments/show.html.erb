@@ -10,54 +10,128 @@
     <div>62.360.268/0001-91</div>
     <div>pbr@volltrix.com.br</div>
     <div>(11) 3838-4557</div>
-    <div>AV DIOGENES RIBEIRO LIMA, 2872, 9 ANDAR, ALTO DA LAPA</div>
+    <div>Av Diogenes Ribeiro Lima, 2872, 9 andar, Alto Da Lapa</div>
     <div>CEP: 05083010</div>
     <div>São Paulo - SP</div>
     <div>www.abras.com.br</div>
   </div>
 </div>
 
-<div class="block-border">
-  <div class="row">
-    <div class="block-title">
-      Dados da Fatura - <%= @payment["invoiceNumber"] %>
-    </div>
-    <div class="col-4">
-      <div class="section-title">
-        Valor
+<% if @installments_summary["totalValue"].present? %>
+  <div class="block-border">
+    <div class="row">
+      <div class="block-title">
+        Dados da Fatura
       </div>
-      <div class="section-body lg-text">
-        <%= @payment["reportValue"] %>
+      <div class="col-6">
+        <div class="section-title">
+          Valor Total
+        </div>
+        <div class="section-body lg-text">
+          <%= @installments_summary["totalValue"] %>
+        </div>
       </div>
-    </div>
-    <div class="col-4">
-      <div class="section-title">
-        Data de Emissão
-      </div>
-      <div class="section-body lg-text">
-        <%= @payment["dateCreated"] %>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="section-title">
-        Data de Vencimento
-      </div>
-      <div class="section-body lg-text">
-        <%= @payment["dueDate"] %>
+      <div class="col-6">
+        <div class="section-title">
+          Data de Emissão
+        </div>
+        <div class="section-body lg-text">
+          <%= @payment["dateCreated"] %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="section-title">
-        Descrição
-      </div>
-      <div class="section-body">
-        <%= @payment["description"] %>
+    <div class="row">
+      <div class="col">
+        <div class="section-title">
+          Descrição
+        </div>
+        <div class="section-body">
+          <%= @installments_summary["description"] %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="block-border">
+    <div class="row">
+      <div class="block-title">
+        Dados da Fatura - <%= @payment["invoiceNumber"] %>
+      </div>
+      <div class="col-4">
+        <div class="section-title">
+          Valor
+        </div>
+        <div class="section-body lg-text">
+          <%= @payment["reportValue"] %>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="section-title">
+          Data de Emissão
+        </div>
+        <div class="section-body lg-text">
+          <%= @payment["dateCreated"] %>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="section-title">
+          Data de Vencimento
+        </div>
+        <div class="section-body lg-text">
+          <%= @payment["dueDate"] %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="section-title">
+          Descrição
+        </div>
+        <div class="section-body">
+          <%= @payment["description"] %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if @installments %>
+  <div class="block-border">
+    <div class="row">
+      <div class="block-title">
+        Parcelas
+      </div>
+      <% @installments.each do |installment| %>
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-6">
+            <div class="section-title">
+              Descrição
+            </div>
+            <div class="section-body">
+              <%= installment["description"] %>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="section-title">
+              Valor
+            </div>
+            <div class="section-body">
+              <%= installment["reportValue"] %>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="section-title">
+              Data de Vencimento
+            </div>
+            <div class="section-body">
+              <%= installment["dueDate"] %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 <div class="block-border">
   <div class="row">
@@ -119,6 +193,11 @@
 .col-4 {
   float: left;
   width: 33%;
+  padding: 0px 10px 0px 10px;
+}
+.col-3 {
+  float: left;
+  width: 25%;
   padding: 0px 10px 0px 10px;
 }
 .col {
