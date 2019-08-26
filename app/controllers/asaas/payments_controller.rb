@@ -40,7 +40,7 @@ class Asaas::PaymentsController < ApplicationController
       @installments_summary["totalValue"] = '%.2f' % @installments_summary["totalValue"]
       @installments_summary["totalValue"] = @installments_summary["totalValue"].gsub(".", "")
       @installments_summary["totalValue"] = Money.new(@installments_summary["totalValue"], "BRL").format
-      @installments_summary["totalValue"].gsub(".", ",")
+      @installments_summary["totalValue"] = @installments_summary["totalValue"].gsub(".", ",")
 
       description_index = @payment["description"].index("ABRAS")
       @installments_summary["description"] = description_index.nil? ? @payment["description"] : @payment["description"][description_index..-1]
@@ -90,7 +90,7 @@ class Asaas::PaymentsController < ApplicationController
       @installments_summary["totalValue"] = '%.2f' % @installments_summary["totalValue"]
       @installments_summary["totalValue"] = @installments_summary["totalValue"].gsub(".", "")
       @installments_summary["totalValue"] = Money.new(@installments_summary["totalValue"], "BRL").format
-      @installments_summary["totalValue"].gsub(".", ",")
+      @installments_summary["totalValue"] = @installments_summary["totalValue"].gsub(".", ",")
 
       description_index = @payment["description"].index("ABRAS")
       @installments_summary["description"] = description_index.nil? ? @payment["description"] : @payment["description"][description_index..-1]
