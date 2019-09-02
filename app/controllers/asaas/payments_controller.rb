@@ -20,7 +20,7 @@ class Asaas::PaymentsController < ApplicationController
     @client["cpfCnpj"] = cnpj.formatted
 
     response = Typhoeus.get("https://viacep.com.br/ws/#{@client["postalCode"]}/json/")
-    @city = response.response_code == 400 ? "N/A" : JSON.parse(response.body)["localidade"]
+    @city = response.response_code != 200 ? "N/A" : JSON.parse(response.body)["localidade"]
 
     @installments_summary = {}
     if @payment["installment"].present?
