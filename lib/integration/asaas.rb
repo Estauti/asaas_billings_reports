@@ -25,8 +25,10 @@ module AsaasAPI
     value = payment["originalValue"].nil? ? payment["value"] : payment["originalValue"]
     value = '%.2f' % value
     value = value.gsub(".", "")
-    value = Money.new(value, "BRL").format
-    value.gsub(".", ",")
+    Money.new(value, 'BRL').format(
+      decimal_mark: ',',
+      thousands_separator: '.'
+    )
   end
 
   def AsaasAPI.get_request(url)
