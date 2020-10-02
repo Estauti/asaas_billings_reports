@@ -88,6 +88,7 @@ GEM
       ffi (>= 1.3.0)
     execjs (2.7.0)
     ffi (1.11.1)
+    ffi (1.11.1-x64-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.6.0)
@@ -115,13 +116,17 @@ GEM
     money (6.13.4)
       i18n (>= 0.6.4, <= 2)
     msgpack (1.3.0)
+    msgpack (1.3.0-x64-mingw32)
     nio4r (2.4.0)
     nokogiri (1.10.3)
+      mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.3-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
     pg (1.1.4)
+    pg (1.1.4-x64-mingw32)
     public_suffix (3.1.1)
     puma (3.12.1)
     rack (2.0.7)
@@ -202,6 +207,8 @@ GEM
       ethon (>= 0.9.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2020.1)
+      tzinfo (>= 1.0.0)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.6.0)
@@ -221,6 +228,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   annotate
@@ -251,7 +259,7 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 RUBY VERSION
-   ruby 2.5.5p157
+   ruby 2.5.8p224
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
