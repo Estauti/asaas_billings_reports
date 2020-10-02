@@ -19,7 +19,7 @@ class Asaas::PaymentsController < ApplicationController
     cnpj = CNPJ.new(@client["cpfCnpj"])
     @client["cpfCnpj"] = cnpj.formatted
 
-    response = Typhoeus.get("https://viacep.com.br/ws/#{@client["postalCode"]}/json/")
+    response = Typhoeus.get("https://viacep.com.br/ws/#{@client["postalCode"]}/json/", ssl_verifypeer: false)
     @city = response.response_code != 200 ? "N/A" : JSON.parse(response.body)["localidade"]
 
     @installments_summary = {}
@@ -71,7 +71,7 @@ class Asaas::PaymentsController < ApplicationController
     cnpj = CNPJ.new(@client["cpfCnpj"])
     @client["cpfCnpj"] = cnpj.formatted
 
-    response = Typhoeus.get("https://viacep.com.br/ws/#{@client["postalCode"]}/json/")
+    response = Typhoeus.get("https://viacep.com.br/ws/#{@client["postalCode"]}/json/", ssl_verifypeer: false)
     @city = response.response_code == 400 ? "N/A" : JSON.parse(response.body)["localidade"]
 
     @installments_summary = {}
