@@ -9,7 +9,7 @@ module AsaasAPI
   end
 
   def AsaasAPI.get_client_payments client_id
-    AsaasAPI.get_request("payments?limit=100&customer=#{client_id}&dateCreated[ge]=2020-08-01&dateCreated[le]=2020-08-31")
+    AsaasAPI.get_request("payments?limit=100&customer=#{client_id}&dateCreated[ge]=2020-09-01&dateCreated[le]=2020-09-30")
   end
 
   def AsaasAPI.get_payment payment_id
@@ -32,7 +32,7 @@ module AsaasAPI
   end
 
   def AsaasAPI.get_request(url)
-    Typhoeus.get("https://www.asaas.com/api/v3/#{url}", headers: { access_token: ENV["ASAAS_API_KEY"] })
+    Typhoeus.get("https://www.asaas.com/api/v3/#{url}", headers: { access_token: ENV["ASAAS_API_KEY"] }, ssl_verifypeer: false)
   end
 
 end
