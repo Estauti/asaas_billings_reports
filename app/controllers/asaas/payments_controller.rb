@@ -3,7 +3,8 @@ class Asaas::PaymentsController < ApplicationController
   include AsaasAPI
 
   before_action :authenticate_user!
-  
+  before_action :update_date_range_filter  
+
   def show
     response = AsaasAPI.get_payment(params[:id])
     @payment = JSON.parse(response.body)

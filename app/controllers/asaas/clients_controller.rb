@@ -3,6 +3,7 @@ class Asaas::ClientsController < ApplicationController
  include AsaasAPI
 
   before_action :authenticate_user!
+  before_action :update_date_range_filter
 
   def index
     response = AsaasAPI.get_clients()
