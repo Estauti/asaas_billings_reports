@@ -1,5 +1,11 @@
-<%= button_to "Imprimir PDF", target: "_blank", controller: "payments", action: "pdf", id: @payment["id"] %>
 <%= link_to "Voltar", controller: "clients", action: "show", id: @payment["customer"] %>
+<div class="d-inline-block ml-3">
+  <%= button_to "Imprimir PDF", {target: "_blank", controller: "payments", action: "pdf", id: @payment["id"]}, {class: "btn btn-primary"} %>
+</div>
+
+<div class="mt-4 mb-4">
+  <hr>
+</div>
 
 <div class="row" style="margin-bottom: 15px">
   <div class="logo-col">
@@ -20,7 +26,7 @@
 <% if @installments_summary["totalValue"].present? %>
   <div class="block-border">
     <div class="row">
-      <div class="block-title">
+      <div class="col-12 block-title">
         Dados da Fatura
       </div>
       <div class="col-6">
@@ -54,7 +60,7 @@
 <% else %>
   <div class="block-border">
     <div class="row">
-      <div class="block-title">
+      <div class="col-12 block-title">
         Dados da Fatura - <%= @payment["invoiceNumber"] %>
       </div>
       <div class="col-4">
@@ -98,65 +104,69 @@
 <% if @installments %>
   <div class="block-border">
     <div class="row">
-      <div class="block-title">
+      <div class="col-12 block-title">
         Parcelas
       </div>
-      <% @installments.each do |installment| %>
-        <div class="row" style="margin-bottom: 20px;">
-          <div class="col-6">
-            <div class="section-title">
-              Descrição
+      <div class="col-12">
+        <% @installments.each do |installment| %>
+          <div class="row" class="mb-4">
+            <div class="col-6">
+              <div class="section-title">
+                Descrição
+              </div>
+              <div class="section-body">
+                <%= installment["description"] %>
+              </div>
             </div>
-            <div class="section-body">
-              <%= installment["description"] %>
+            <div class="col-3">
+              <div class="section-title">
+                Valor
+              </div>
+              <div class="section-body">
+                <%= installment["reportValue"] %>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="section-title">
+                Data de Vencimento
+              </div>
+              <div class="section-body">
+                <%= installment["dueDate"] %>
+              </div>
             </div>
           </div>
-          <div class="col-3">
-            <div class="section-title">
-              Valor
-            </div>
-            <div class="section-body">
-              <%= installment["reportValue"] %>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="section-title">
-              Data de Vencimento
-            </div>
-            <div class="section-body">
-              <%= installment["dueDate"] %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>
 
 <div class="block-border">
   <div class="row">
-    <div class="block-title">
+    <div class="col-12 block-title">
       Dados do Pagador
     </div>
-    <div class="row">
-      <div class="col-6">
-        <div class="section-title">
-          Nome
+    <div class="col-12">
+      <div class="row">
+        <div class="col-6">
+          <div class="section-title">
+            Nome
+          </div>
+          <div class="section-body">
+            <%= @client["name"] %>
+          </div>
         </div>
-        <div class="section-body">
-          <%= @client["name"] %>
+        <div class="col-6">
+          <div class="section-title">
+            CNPJ
+          </div>
+          <div class="section-body">
+            <%= @client["cpfCnpj"] %>
+          </div>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="section-title">
-          CNPJ
-        </div>
-        <div class="section-body">
-          <%= @client["cpfCnpj"] %>
-        </div>
-      </div>
+      </div>  
     </div>
-    <div class="col">
+    <div class="col-12">
       <div class="section-title">
         Endereço
       </div>
@@ -166,10 +176,6 @@
     </div>
   </div>
 </div>
-
-<p>
-  <%= @payment %>
-</p>
 
 <style>
 * {
@@ -185,30 +191,6 @@
   width: 55%;
   padding: 0px 10px 0px 10px;
 }
-.col-6 {
-  float: left;
-  width: 50%;
-  padding: 0px 10px 0px 10px;
-}
-.col-4 {
-  float: left;
-  width: 33%;
-  padding: 0px 10px 0px 10px;
-}
-.col-3 {
-  float: left;
-  width: 25%;
-  padding: 0px 10px 0px 10px;
-}
-.col {
-  padding: 0px 10px 0px 10px;
-}
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 .section-title {
   border: 1px solid black;
   padding: 5px;
@@ -218,11 +200,11 @@
 }
 .block-border {
   border: 1px solid #ccc;
+  padding: 10px;
   margin-bottom: 5px;
 }
 .block-title {
   font-size: 20px;
-  margin: 10px 10px 0px 15px;
 }
 .lg-text {
   font-size: 30px
