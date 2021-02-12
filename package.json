@@ -1,5 +1,8 @@
 {
   "name": "asaas_billings_reports",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap-icons": "^1.0.0"
+  },
+  "devDependencies": {}
 }
