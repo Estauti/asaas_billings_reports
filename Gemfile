@@ -57,7 +57,7 @@ gem 'cpf_cnpj', '~> 0.1.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'jquery-rails'
-gem 'bootstrap', '4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 
 gem 'devise'
 
