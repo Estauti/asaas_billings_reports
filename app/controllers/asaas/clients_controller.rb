@@ -2,6 +2,8 @@ require_relative '../../../lib/integration/asaas'
 class Asaas::ClientsController < ApplicationController
  include AsaasAPI
 
+  before_action :authenticate_user!
+
   def index
     response = AsaasAPI.get_clients()
     @clients = JSON.parse(response.body)["data"]

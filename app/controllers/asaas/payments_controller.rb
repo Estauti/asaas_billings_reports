@@ -1,6 +1,9 @@
 require_relative '../../../lib/integration/asaas'
 class Asaas::PaymentsController < ApplicationController
   include AsaasAPI
+
+  before_action :authenticate_user!
+  
   def show
     response = AsaasAPI.get_payment(params[:id])
     @payment = JSON.parse(response.body)

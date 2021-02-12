@@ -11,6 +11,22 @@
 
   <body>
     <div class="container">
+      <% if notice %>
+        <p class="notice">
+          <div class="alert alert-info" role="alert">
+            <%= notice %>
+          </div>
+        </p>
+      <% end %>
+
+      <% if alert %>
+        <p class="alert">
+          <div class="alert alert-warning" role="alert">
+            <%= alert %>
+          </div>
+        </p>
+      <% end %>
+
       <div class="pt-3 pb-3">
         <%= yield %>
       </div>
