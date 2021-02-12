@@ -1,15 +1,24 @@
-<h1 ><%= @client["company"] %></h1>
-<p>
-  <%= @client %>
-</p>
+<h1 ><%= @client["name"] %></h1>
 
-<ul>
-  <% @payments.each do |payment| %>
-    <li>
-      <%= link_to payment["description"], controller: "payments", action: "show", id: payment["id"]%>
-      <%= button_to "Imprimir PDF", target: "_blank", controller: "payments", action: "pdf", id: payment["id"] %>
-    </li>
-  <% end %>
-</ul>
+<div class="pt-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Cobrança</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payments.each do |payment| %>
+        <tr>
+          <td><%= link_to payment["description"], controller: "payments", action: "show", id: payment["id"]%></td>
+          <td><%= button_to "Imprimir PDF", {target: "_blank", controller: "payments", action: "pdf", id: payment["id"]}, {class: "btn btn-primary btn-sm"} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= link_to "Voltar", controller: "clients", action: "index" %>
+<div class="pt-4">
+  <%= link_to "Voltar", controller: "clients", action: "index" %>
+</div>
