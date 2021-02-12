@@ -1,8 +1,24 @@
-<h1>Clients List</h1>
-<ul>
-  <% @clients.each do |client| %>
-    <li>
-      <%= link_to client["name"], controller: "clients", action: "show", id: client["id"] %>
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="pt-3 pb-3">
+    <h1>Lista de clientes</h1>
+
+    <div class="pt-3">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Cliente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @clients.each do |client| %>
+            <tr>
+              <td>
+                <%= link_to client["name"], controller: "clients", action: "show", id: client["id"] %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
