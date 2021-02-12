@@ -1,24 +1,22 @@
-<div class="container">
-  <div class="pt-3 pb-3">
-    <h1>Lista de clientes</h1>
+<div class="pt-3 pb-3">
+  <h1>Lista de clientes</h1>
 
-    <div class="pt-3">
-      <table class="table table-striped">
-        <thead>
+  <div class="pt-3">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Cliente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @clients.each do |client| %>
           <tr>
-            <th scope="col">Cliente</th>
+            <td>
+              <%= link_to client["name"], controller: "clients", action: "show", id: client["id"] %>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% @clients.each do |client| %>
-            <tr>
-              <td>
-                <%= link_to client["name"], controller: "clients", action: "show", id: client["id"] %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
