@@ -19,8 +19,10 @@ class Asaas::ClientsController < ApplicationController
     response = AsaasAPI.get_client(params[:id])
     @client = JSON.parse(response.body)
 
-    response = AsaasAPI.get_client_payments(params[:id])
+    response = AsaasAPI.get_client_payments(params[:id], current_user.date_range_filter)
     @payments = JSON.parse(response.body)["data"]
+
+    @date_range_filter = current_user.date_range_filter
 
     respond_to do |format|
       format.html { render 'asaas/clients/show' }

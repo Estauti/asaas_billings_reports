@@ -8,8 +8,8 @@ module AsaasAPI
     AsaasAPI.get_request("customers?limit=#{limit}")
   end
 
-  def AsaasAPI.get_client_payments client_id
-    AsaasAPI.get_request("payments?limit=100&customer=#{client_id}&dateCreated[ge]=2021-01-01&dateCreated[le]=2021-02-15")
+  def AsaasAPI.get_client_payments(client_id, date_range_filter)
+    AsaasAPI.get_request("payments?limit=100&customer=#{client_id}&dateCreated[ge]=#{date_range_filter.start_date}&dateCreated[le]=#{date_range_filter.end_date}")
   end
 
   def AsaasAPI.get_payment payment_id
